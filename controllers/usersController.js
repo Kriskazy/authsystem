@@ -32,7 +32,7 @@ exports.registerUser = asyncHandler(async (req, res) => {
     username,
     password: hashedpwd,
     email,
-    role: "admin",
+    role: "manager",
   });
 
   if (!user) {
