@@ -1,6 +1,4 @@
 const express = require("express");
-const roleChecker = require("./middleware/roleChecker");
-const verifyToken = require("./middleware/tokenChecker");
 const routes = require("./routes/userRoutes");
 const { port, db } = require("./config");
 const mongoose = require("mongoose");
