@@ -32,7 +32,7 @@ exports.registerUser = asyncHandler(async (req, res) => {
     username,
     password: hashedpwd,
     email,
-    role: "user",
+    role: "admin",
   });
 
   if (!user) {
@@ -104,7 +104,7 @@ exports.resetPassword = asyncHandler(async (req, res) => {
   }
 
   // send mail containing link for new password
-  const generatedLink = `${process.env.BASE_URL}api/auth/resetpassword/user/${user._id}`;
+  const generatedLink = `${url}api/auth/resetpassword/user/${user._id}`;
 
   try {
     mailer(user.email, "Password Reset Link", generatedLink);

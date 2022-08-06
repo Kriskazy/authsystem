@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/User");
-require("dotenv").config();
+const { tokensecret } = require("../config");
 
 const verifyToken = asyncHandler(async (req, res, next) => {
   let token;
@@ -14,7 +14,7 @@ const verifyToken = asyncHandler(async (req, res, next) => {
     try {
       token = req.headers.authorization.split(" ")[1];
 
-      const decode = jwt.verify(token, process.env.TOKEN_SECRET);
+      const decode = jwt.verify(token, tokensecret);
 
       console.log(decode);
 
