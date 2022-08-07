@@ -11,19 +11,20 @@ const {
 
 module.exports = async (email, subject, text) => {
   try {
-    const transport = nodemailer.createTransport({
-      host: host,
-      service: service,
-      port: Number(eport),
-      secure: Boolean(secure),
+    let transport = nodemailer.createTransport({
+      service: "gmail",
       auth: {
+        type: "OAuth2",
         user: user,
         pass: pass,
+        clientId: process.env.OAUTH_CLIENTID,
+        clientSecret: process.env.OAUTH_CLIENT_SECRET,
+        refreshToken: process.env.OAUTH_REFRESH_TOKEN,
       },
     });
 
     await transport.sendMail({
-      from: noreply,
+      from: user,
       to: email,
       subject: subject,
       text: text,
@@ -31,6 +32,6 @@ module.exports = async (email, subject, text) => {
 
     console.log("Email delivered succesfully");
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };

@@ -122,14 +122,7 @@ exports.resetPassword = asyncHandler(async (req, res) => {
 exports.completeResetPassword = asyncHandler(async (req, res) => {
   try {
     // get password from request body
-    const { password, password2 } = req.body;
-
-    // check if passwords dont match
-    if (password !== password2) {
-      res.status(400);
-      throw new Error("Sorry passwords should match");
-    }
-
+    const { password } = req.body;
     const { id } = req.params;
     console.log(id);
 
@@ -137,7 +130,8 @@ exports.completeResetPassword = asyncHandler(async (req, res) => {
     const user = await User.findOne({ _id: id });
     console.log(user);
     // check if passwords do not match
-    const isMatchedPasswords = await bcrypt.compare(user.password, password);
+    const isMatchedPasswords = await bcrypt.compare(password, user.password);
+
     if (isMatchedPasswords) {
       res.status(400);
       throw new Error("Sorry, you cannot reset with old password");
