@@ -14,16 +14,48 @@ When you register a user, it returns the user's information
 
 Route - `localhost:3000/api/auth/register`
 
-![screenshot](registerapi.png)
+![screenshot](Registerapi.png)
 
-When you log in a user, it returns the auth token and additional user information
+When a user logs in, it returns the auth token and additional user information
 
-![screenshot](login_route.png)
+Route - `localhost:3000/api/auth/login`
 
-When a user loses their password, they can reset by first entering their email address. This will send a generated link to the user's email.
+![screenshot](LoginApi.png)
 
-![screenshot](password_reset_link_in_email.png)
+Users, Staff, Managers and Admin can visit their routes after verifying they have tokens and Role matches their respective routes. 
 
-When user enters new password in the reset link provided in their email, their password is reset successfully
+User Route - `localhost:3000/user`
 
-![screenshot](password_reset_confirmation.png)
+![screenshot](userroute.png)
+
+Staff Route - `localhost:3000/staff`
+
+![screenshot](staffroute.png)
+
+Manager Route - `localhost:3000/manager`
+
+![screenshot](authmanagerroute.png)
+
+Admin Route - `localhost:3000/admin`
+
+![screenshot](authadminroutewithuserrole.png)
+
+A User with a different Role cannot access the Route of a User with another Role.
+For instance a Manager cannot access the Admin Route as seen below.
+
+![screenshot](unauthmanagerroletoadmin.png)
+
+
+
+
+
+Users can reset their passwords by inputing their registered email address.
+They get a link directly to their email with reset password link.
+
+Route - `localhost:3000/api/auth/resetpassword`
+
+![screenshot](resetpasswordlink.png)
+
+After enetering new password, the password is reset sucessfully
+
+![screenshot](passwordsetsuccessfully.png)
