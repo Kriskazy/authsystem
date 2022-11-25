@@ -80,10 +80,7 @@ exports.loginUser = asyncHandler(async (req, res) => {
   });
 
   res.status(200).json({
-    _id: user._id,
-    email: user.email,
-    username: user.username,
-    token: token,
+    user,
   });
 });
 
